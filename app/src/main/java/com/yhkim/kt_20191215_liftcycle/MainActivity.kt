@@ -16,6 +16,13 @@ class MainActivity : BaseActivity() {
         Log.d("생명주기", "onCreate 실행")
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("생명주기", "onResume 실행")
+
+    }
+
     override fun setupEvents() {
         callActivityBtn.setOnClickListener {
             val intent = Intent(mContext, SecondActivity::class.java)
