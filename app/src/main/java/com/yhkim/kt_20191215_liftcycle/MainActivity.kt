@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    var lastBackButtonTime = 0
+    var lastBackButtonTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,18 @@ class MainActivity : BaseActivity() {
     override fun onBackPressed() {
         val currentTime = System.currentTimeMillis()
 
-        Toast.makeText(mContext, "한번 더 뒤로 버튼을 누르면 종료됩나다", Toast.LENGTH_SHORT).show()
+//        현재 시간 기준으로 1초 이내에 백버튼을 누른 기록이 있다면 종료
+//        간격이 1초가 넘어가면 토스트 1초 == 1000ms
+
+        if(currentTime - lastBackButtonTime > 1000) {
+            Toast.makeText(mContext, "한번 더 뒤로 버튼을 누르면 종료됩나다", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            finish()
+        }
+
+//        마지막으로 누른 시간을 갱신
+        lastBackButtonTime = currentTime
     }
 
     override fun onResume() {
