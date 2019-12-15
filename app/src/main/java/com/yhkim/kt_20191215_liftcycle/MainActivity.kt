@@ -20,7 +20,16 @@ class MainActivity : BaseActivity() {
         super.onResume()
 
         Log.d("생명주기", "onResume 실행")
+    }
 
+    override fun onPause() {
+        super.onPause()
+        Log.d("생명주기", "onPause 실행")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("생명주기", "onDestroy 실행")
     }
 
     override fun setupEvents() {
